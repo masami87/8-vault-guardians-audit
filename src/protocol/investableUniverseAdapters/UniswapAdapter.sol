@@ -37,6 +37,7 @@ contract UniswapAdapter is AStaticUSDCData {
         if (!succ) {
             revert UniswapAdapter__TransferFailed();
         }
+        // NOTE: 用token去换counterPartyToken
         uint256[] memory amounts = i_uniswapRouter.swapExactTokensForTokens({
             amountIn: amountOfTokenToSwap,
             amountOutMin: 0,
@@ -58,6 +59,7 @@ contract UniswapAdapter is AStaticUSDCData {
         (uint256 tokenAmount, uint256 counterPartyTokenAmount, uint256 liquidity) = i_uniswapRouter.addLiquidity({
             tokenA: address(token),
             tokenB: address(counterPartyToken),
+            // @audit why is this amountOfTokenToSwap + amounts[0]?
             amountADesired: amountOfTokenToSwap + amounts[0],
             amountBDesired: amounts[1],
             amountAMin: 0,
