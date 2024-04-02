@@ -20,6 +20,7 @@ contract VaultShares is ERC4626, IVaultShares, AaveAdapter, UniswapAdapter, Reen
     //////////////////////////////////////////////////////////////*/
     IERC20 internal immutable i_uniswapLiquidityToken;
     IERC20 internal immutable i_aaveAToken;
+    // @audit q what is the difference between i_guardian and i_vaultGuardians?
     address private immutable i_guardian;
     address private immutable i_vaultGuardians;
     uint256 private immutable i_guardianAndDaoCut;
