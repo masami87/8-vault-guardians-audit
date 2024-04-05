@@ -141,6 +141,7 @@ contract VaultShares is ERC4626, IVaultShares, AaveAdapter, UniswapAdapter, Reen
         uint256 shares = previewDeposit(assets);
         _deposit(_msgSender(), receiver, assets, shares);
 
+        // @audit why this?
         _mint(i_guardian, shares / i_guardianAndDaoCut);
         _mint(i_vaultGuardians, shares / i_guardianAndDaoCut);
 
